@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/circle_icon.png</file>
+        <file>images/cross_delete_icon.png</file>
+        <file>images/hand_icon.png</file>
+        <file>images/line_icon.png</file>
+        <file>images/rectangle_icon.png</file>
+        <file>images/triangle_icon.png</file>
+    </qresource>
+</RCC>
