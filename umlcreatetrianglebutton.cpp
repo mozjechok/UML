@@ -25,8 +25,8 @@ void UMLCreateTriangleButton::setRectToGraphicsItem(UMLBaseFigure *item, const Q
 
     QTransform transform;
 
-    transform.translate(center.x() - triangleBoundingRect.center().x(),
-                        center.y() - triangleBoundingRect.center().y());
+    transform.translate(center.x(),
+                        center.y());
 
     transform.scale(size.x() / triangleBoundingRect.width(),
                     size.y() / triangleBoundingRect.height());

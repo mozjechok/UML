@@ -23,8 +23,8 @@ QRectF UMLPolygon::rect() const
 void UMLPolygon::setRect(const QRectF &rect)
 {
     QTransform transform;
-    transform.translate(rect.center().x() - boundingRect().center().x(),
-                        rect.center().y() - boundingRect().center().y());
+    transform.translate(rect.center().x(),
+                        rect.center().y());
 
     transform.scale(rect.width() / boundingRect().width(),
                     rect.height() / boundingRect().height());
@@ -68,11 +68,10 @@ void UMLPolygon::setFillRule(Qt::FillRule rule)
 QRectF UMLPolygon::boundingRect() const
 {
     if (_boundingRect.isNull()) {
-        qreal pw = pen().style() == Qt::NoPen ? qreal(0) : pen().widthF();
-        if (pw == 0.0)
-            _boundingRect = _polygon.boundingRect();
-        else
-            _boundingRect = shape().controlPointRect();
+        qreal halfpw = pen().style() == Qt::NoPen ? qreal(0) : pen().widthF() / 2;
+        _boundingRect = _polygon.boundingRect();
+        if (halfpw > 0.0)
+            _boundingRect.adjust(-halfpw, -halfpw, halfpw, halfpw);
     }
     return _boundingRect;
 }
@@ -80,7 +79,7 @@ QRectF UMLPolygon::boundingRect() const
 QPainterPath UMLPolygon::shape() const
 {
     QPainterPath path;
-    path.addPolygon(_polygon);
+    path.addRect(boundingRect());
     return qt_graphicsItem_shapeFromPath(path, _pen);
 }
 

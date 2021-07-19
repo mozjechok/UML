@@ -44,11 +44,7 @@ QRectF UMLCircle::boundingRect() const
 QPainterPath UMLCircle::shape() const
 {
     QPainterPath path;
-    if (_rect.isNull())
-        return path;
-
-    path.addEllipse(_rect);
-
+    path.addRect(_rect);
     return qt_graphicsItem_shapeFromPath(path, _pen);
 }
 
